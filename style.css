@@ -201,184 +201,15 @@ nav {
 }
 
 .description {
-    font-family: var(--glitch-font);
+    font-family: var(--body-font);
+    /* Changed to Pretendard as requested */
     font-size: 1.2rem;
     line-height: 1.6;
     color: #ccc;
-}
-
-/* Download Grid */
-.download-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    margin-bottom: 4rem;
-}
-
-.data-card {
-    border: none;
-    background: #1e1e22;
-    transition: all 0.3s;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.data-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.card-header {
-    background: #000;
-    color: #fff;
-    padding: 1rem;
-    font-family: var(--terminal-font);
-    font-weight: 700;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: space-between;
-}
-
-.card-image-container {
-    height: 400px;
-    background: #151515;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    border-bottom: none;
-}
-
-.card-image-container img {
-    height: 95%;
-    width: auto;
-    filter: none;
-    transition: transform 0.3s;
-}
-
-.data-card:hover .card-image-container img {
-    transform: scale(1.05);
-}
-
-.card-body {
-    padding: 2rem;
-    text-align: center;
-}
-
-.card-body h3 {
-    font-family: var(--terminal-font);
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: #fff;
-}
-
-.card-body p {
-    font-family: var(--body-font);
     font-weight: 300;
-    color: #ccc;
 }
 
-.btn-terminal {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 1rem 2rem;
-    border: 2px solid #fff;
-    background: transparent;
-    color: #fff;
-    font-family: var(--terminal-font);
-    font-weight: 700;
-    transition: background 0.3s, color 0.3s;
-}
-
-.btn-terminal:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* Terms Console */
-.terms-console {
-    background: #000;
-    border: 2px solid #fff;
-    font-family: var(--terminal-font);
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.console-header {
-    background: #fff;
-    padding: 0.5rem 1rem;
-    color: #000;
-    font-weight: 700;
-    font-size: 0.9rem;
-    border-bottom: 1px solid #fff;
-}
-
-.console-body {
-    padding: 1.5rem;
-    color: #fff;
-    font-size: 0.9rem;
-    line-height: 1.8;
-}
-
-/* Gallery */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-
-.gallery-frame {
-    aspect-ratio: 1;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #050505;
-    transition: border-color 0.3s;
-}
-
-.gallery-frame:hover {
-    border-color: #fff;
-}
-
-.frame-label {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    font-family: var(--terminal-font);
-    font-weight: 700;
-    font-size: 0.8rem;
-    color: #fff;
-}
-
-.gallery-content {
-    font-family: var(--terminal-font);
-    font-weight: 700;
-    color: #555;
-}
-
-/* Footer */
-.contact-terminal {
-    text-align: center;
-    margin-bottom: 4rem;
-    font-family: var(--terminal-font);
-    font-weight: 700;
-}
-
-.contact-terminal p {
-    margin: 0.5rem 0;
-}
-
-footer {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.8rem;
-    color: #888;
-    font-family: var(--terminal-font);
-}
+/* ... (skip to news card) ... */
 
 /* News Card */
 .news-card {
@@ -386,17 +217,20 @@ footer {
     bottom: 2rem;
     right: 2rem;
     background: rgba(0, 0, 0, 0.9);
-    border: 2px solid #fff;
+    border: 1px solid var(--accent-color);
+    /* Blue border for the window */
     width: 320px;
     padding: 0;
     font-family: var(--terminal-font);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 4, 255, 0.3);
+    /* Blue Glow */
     animation: slideIn 1s ease-out;
 }
 
 .news-header {
-    background: #fff;
-    color: #000;
+    background: var(--accent-color);
+    /* Deep Blue Background */
+    color: #fff;
     padding: 0.8rem;
     font-size: 1rem;
     font-weight: bold;
@@ -415,6 +249,7 @@ footer {
     padding-bottom: 0.5rem;
     color: #ccc;
 }
+
 
 .news-list li:last-child {
     border-bottom: none;
