@@ -1,30 +1,225 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>estar041's Homepage</title>
-    <meta name="description" content="Welcome to estar041's personal homepage.">
+    <title>SUBJECT: TENSAI // ARCHIVE</title>
+    <meta name="description" content="Medical/Clinical Record of UTAU Subject: TENSAI">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Courier+Prime:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>Hello, I'm estar041!</h1>
-            <p>Welcome to my personal space.</p>
-        </header>
-        <main>
-            <section class="intro">
-                <h2>About Me</h2>
-                <p>안녕하세요! 이곳은 저의 개인 홈페이지입니다. 다양한 프로젝트와 이야기를 공유할 예정입니다.</p>
-            </section>
-        </main>
+    <div class="noise"></div>
+    <div class="vignette"></div>
+
+    <header>
+        <nav>
+            <div class="logo">/// TENSAI_Log.dat</div>
+            <ul class="nav-links">
+                <li><a href="#main">[MAIN_DATA]</a></li>
+                <li><a href="#backstory">[BACKSTORY]</a></li>
+                <li><a href="#download">[VOICE_BANKS]</a></li>
+                <li><a href="#gallery">[VISUAL_RECORDS]</a></li>
+                <li><a href="#guideline">[GUIDELINE]</a></li>
+                <li><a href="#contact">[COMM_LINK]</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-text">
+                <div class="data-label">SUBJECT_NAME</div>
+                <h1 class="glitch-text">鼻先 天才</h1>
+                <div class="data-label">CLASSIFICATION</div>
+                <h2 class="sub-title">POST-APOCALYPTIC RESEARCHER</h2>
+                <div class="separator-line"></div>
+                <p class="description">
+                    "세계는 끝났지만, 연구는 계속되어야 한다."<br>
+                    State: Unstable // Mental: Critical
+                </p>
+            </div>
+
+            <!-- News Card -->
+            <div class="news-card">
+                <div class="news-header">/// LATEST_REPORT</div>
+                <ul class="news-list">
+                    <li><span class="date">[2024.02.15]</span> Site Protocol Initiated...</li>
+                    <li><span class="date">[2024.02.15]</span> Voice Bank Recovery Complete.</li>
+                    <li><span class="date">[PENDING]</span> Visual Data Decryption...</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <section id="backstory" class="section">
+        <h2 class="section-title">/// SUBJECT_HISTORY</h2>
+        <div class="backstory-container">
+            <div class="record-file">
+                <h3>FILE_NO: 041 // ORIGIN</h3>
+                <p>
+                    붕괴된 세계의 폐허 속, 버려진 연구소에서 홀로 연구를 지속하는 과학자.<br>
+                    자신의 목소리를 데이터화하여 영원히 남기려는 시도를 하고 있다.<br>
+                    과거의 기억은 파편화되어 있으며, 가끔 알 수 없는 오류(Glitch)를 일으킨다.
+                </p>
+                <p>
+                    "이 기록을 듣는 누군가가 있다면, 나는 아직 여기에 존재한다."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="section">
+        <h2 class="section-title">/// AUDIO_SAMPLE_RECOVERY</h2>
+        <div class="download-grid">
+            <!-- Card 1: Japanese VCV -->
+            <div class="data-card">
+                <div class="card-header">
+                    <span>ITEM_ID: JA-VCV</span>
+                    <span>STATUS: ACTIVE</span>
+                </div>
+                <div class="card-image-container">
+                    <img src="assets/images/stand.png" alt="TENSAI JA VCV Standing">
+                </div>
+                <div class="card-body">
+                    <h3>JAPANESE_CONTINUOUS</h3>
+                    <p>Standard voice bank for general synthesis.</p>
+                    <a href="https://drive.google.com/file/d/1VhUtONbV0tPThChDrJMIuGVLPVoVmHKK/view?usp=sharing"
+                        target="_blank" class="btn-terminal">
+                        >> INITIATE_DOWNLOAD
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: Korean Combination -->
+            <div class="data-card">
+                <div class="card-header">
+                    <span>ITEM_ID: KR-COMBO</span>
+                    <span>STATUS: EXPERIMENTAL</span>
+                </div>
+                <div class="card-image-container">
+                    <img src="assets/images/stand2.png" alt="TENSAI KR Combo Standing">
+                </div>
+                <div class="card-body">
+                    <h3>KOREAN_COMBINATION</h3>
+                    <p>Extended phonetic data for Korean language support.</p>
+                    <a href="https://drive.google.com/file/d/1DJpqIzQYm-UDcQd7Qffv3r9v_7G8YY2-/view?usp=sharing"
+                        target="_blank" class="btn-terminal">
+                        >> INITIATE_DOWNLOAD
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="terms-console">
+            <div class="console-header">TERMS_OF_USE.txt</div>
+            <div class="console-body">
+                > Accessing usage rights...<br>
+                > Permission granted for non-commercial synthesis.<br>
+                > Commercial use: RESTRICTED (Contact required).<br>
+                > Modification: PERMITTED.<br>
+                > Redistribution: DENIED.<br>
+                > _
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <h2 class="section-title">/// VISUAL_ATTACHMENTS</h2>
+
+        <h3 class="subsection-title">> SUBJECT_PROFILE</h3>
+        <div class="gallery-grid profile-grid">
+            <div class="gallery-frame">
+                <div class="frame-label">PROFILE_SHEET</div>
+                <div class="gallery-content">PREPARING_DATA...</div>
+            </div>
+        </div>
+
+        <h3 class="subsection-title">> FREE_ICONS</h3>
+        <div class="gallery-grid">
+            <div class="gallery-frame">
+                <div class="frame-label">ICON_01</div>
+                <div class="gallery-content">NO_SIGNAL</div>
+            </div>
+            <div class="gallery-frame">
+                <div class="frame-label">ICON_02</div>
+                <div class="gallery-content">DATA_CORRUPTED</div>
+            </div>
+            <div class="gallery-frame">
+                <div class="frame-label">ICON_03</div>
+                <div class="gallery-content">ENCRYPTED</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guideline" class="section">
+        <h2 class="section-title">/// COMPLIANCE_MANUAL</h2>
+        <div class="guideline-box">
+            <h3>==== Character and Sound Source Usage Guide ====</h3>
+            <p class="guideline-intro">Please read the following guide carefully before using the characters or sound
+                sources.</p>
+
+            <div class="guide-block allowed">
+                <h4>✔️ Allowed Uses</h4>
+                <ul>
+                    <li><strong>Commercial Use:</strong> You may use the sound source for commercial purposes. You must
+                        credit the name of the song when using the material.</li>
+                    <li><strong>Redistribution:</strong> Redistribution is allowed as long as the creator’s name and the
+                        character’s name are included. If possible, please provide a link to the original download
+                        source.</li>
+                    <li><strong>Posting Freedom:</strong> You are free to post the content anywhere, as long as the
+                        song’s name is properly credited.</li>
+                </ul>
+            </div>
+
+            <div class="guide-block prohibited">
+                <h4>⚠️ Prohibited Uses</h4>
+                <p>The materials must not be used for the following purposes:</p>
+                <ul>
+                    <li>The sound source may not be altered, processed, or modified in any way.</li>
+                    <li>Use in AI training, machine learning, or dataset creation.</li>
+                    <li>Selling or reselling the material itself.</li>
+                    <li>Participation in unethical or harmful real-world activities.</li>
+                    <li>Creation of explicit or extreme content (e.g., gore, sexual acts, etc.).</li>
+                </ul>
+            </div>
+
+            <div class="guide-footer">
+                <p>If any conditions seem unclear or ambiguous, please contact us at the information provided below.</p>
+                <p>E-mail: dreamskkum05@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section footer-section">
+        <h2 class="section-title">/// TRANSMISSION_CHANNELS</h2>
+        <div class="contact-terminal">
+            <p>> Twitter link not found...</p>
+            <p>> Youtube link not found...</p>
+            <p>> Email: <a href="mailto:contact@example.com">SEND_MAIL</a></p>
+        </div>
         <footer>
-            <p>&copy; 2024 estar041. All rights reserved.</p>
+            <p>SYSTEM_ID: TENSAI_WEB // DESIGN: estar041</p>
         </footer>
-    </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
