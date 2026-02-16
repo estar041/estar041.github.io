@@ -39,7 +39,6 @@
     --terminal-font: 'D2Coding', monospace;
     --body-font: 'Pretendard', 'BookkMyungjo', sans-serif;
     --display-font: 'ChosunM', serif;
-    /* Changed to ChosunNm */
     --glitch-font: 'RFDECHUNG', cursive;
 }
 
@@ -58,6 +57,19 @@ body {
     overflow-x: hidden;
 }
 
+/* Vignette as Background - Gray to Black */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient from #79778c to #000000 */
+    background: radial-gradient(circle at center, #79778c 0%, #000000 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
 /* Noise overlay */
 .noise {
     position: fixed;
@@ -71,17 +83,6 @@ body {
     z-index: 1000;
 }
 
-.vignette {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
-    pointer-events: none;
-    z-index: 900;
-}
-
 a {
     text-decoration: none;
     color: inherit;
@@ -93,7 +94,8 @@ header {
     top: 0;
     width: 100%;
     padding: 1rem 2rem;
-    background: rgba(41, 41, 46, 0.95);
+    background: rgba(0, 0, 0, 0.5);
+    /* darkened for new bg */
     z-index: 800;
 }
 
@@ -207,7 +209,6 @@ nav {
 
 .description {
     font-family: var(--body-font);
-    /* Pretendard for quote */
     font-size: 1.2rem;
     line-height: 1.6;
     color: #ccc;
@@ -223,20 +224,23 @@ nav {
 }
 
 .data-card {
-    border: none;
-    background: #1e1e22;
+    border: 1px solid var(--accent-color);
+    /* Blue Border */
+    background: rgba(0, 0, 0, 0.9);
     transition: all 0.3s;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 4, 255, 0.15);
 }
 
 .data-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 25px rgba(0, 4, 255, 0.3);
 }
 
 .card-header {
-    background: #000;
+    background: var(--accent-color);
+    /* Blue Header */
     color: #fff;
     padding: 1rem;
     font-family: var(--terminal-font);
@@ -303,22 +307,25 @@ nav {
     color: #000;
 }
 
-/* Terms Console */
+/* Terms Console - Blue Style */
 .terms-console {
-    background: #000;
-    border: 2px solid #fff;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid var(--accent-color);
+    /* Blue Border */
     font-family: var(--terminal-font);
     max-width: 800px;
     margin: 0 auto;
+    box-shadow: 0 0 15px rgba(0, 4, 255, 0.1);
 }
 
 .console-header {
-    background: #fff;
+    background: var(--accent-color);
+    /* Blue Header */
     padding: 0.5rem 1rem;
-    color: #000;
+    color: #fff;
     font-weight: 700;
     font-size: 0.9rem;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--accent-color);
 }
 
 .console-body {
@@ -387,25 +394,22 @@ footer {
     font-family: var(--terminal-font);
 }
 
-/* News Card - Accent Applied */
+/* News Card */
 .news-card {
     position: absolute;
     bottom: 2rem;
     right: 2rem;
     background: rgba(0, 0, 0, 0.9);
     border: 1px solid var(--accent-color);
-    /* Blue Border */
     width: 320px;
     padding: 0;
     font-family: var(--terminal-font);
     box-shadow: 0 0 20px rgba(0, 4, 255, 0.3);
-    /* Blue Glow */
     animation: slideIn 1s ease-out;
 }
 
 .news-header {
     background: var(--accent-color);
-    /* Deep Blue Background */
     color: #fff;
     padding: 0.8rem;
     font-size: 1rem;
@@ -527,38 +531,33 @@ footer {
 }
 
 .guide-block.allowed {
-    border-left-color: #fff;
-    /* White for allowed in this theme */
+    border-left-color: #00ff00;
+    /* Green */
+    background: rgba(0, 255, 0, 0.05);
+    color: #00ff00;
+}
+
+.guide-block.allowed h4,
+.guide-block.allowed ul,
+.guide-block.allowed li,
+.guide-block.allowed li::before,
+.guide-block.allowed strong {
+    color: #00ff00 !important;
 }
 
 .guide-block.prohibited {
-    border-left-color: #d00;
-    /* Red for prohibited */
+    border-left-color: #ff0000;
+    /* Red */
+    background: rgba(255, 0, 0, 0.05);
+    color: #ff0000;
 }
 
-.guide-block h4 {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-    color: #fff;
-    font-weight: 700;
-}
-
-.guide-block ul {
-    list-style: none;
-    padding-left: 1rem;
-}
-
-.guide-block ul li {
-    margin-bottom: 0.5rem;
-    position: relative;
-    color: #ccc;
-}
-
-.guide-block ul li::before {
-    content: '-';
-    position: absolute;
-    left: -1rem;
-    color: #666;
+.guide-block.prohibited h4,
+.guide-block.prohibited ul,
+.guide-block.prohibited li,
+.guide-block.prohibited p,
+.guide-block.prohibited li::before {
+    color: #ff0000 !important;
 }
 
 .guide-footer {
