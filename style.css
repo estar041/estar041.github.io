@@ -568,3 +568,70 @@ footer {
     color: #888;
     font-size: 0.9rem;
 }
+
+/* Language Switcher */
+.lang-switcher {
+    position: fixed;
+    top: 1.2rem;
+    left: 1.5rem;
+    z-index: 10000;
+    cursor: pointer;
+    font-family: var(--terminal-font);
+}
+
+.lang-current {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+}
+
+.lang-current:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.3rem;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid var(--accent-color);
+    min-width: 100px;
+}
+
+.lang-switcher.open .lang-dropdown {
+    display: block;
+}
+
+.lang-dropdown a {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 400;
+    transition: all 0.15s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lang-dropdown a:last-child {
+    border-bottom: none;
+}
+
+.lang-dropdown a:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+.lang-dropdown a.lang-active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
