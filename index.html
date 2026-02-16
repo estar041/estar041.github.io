@@ -141,29 +141,55 @@
     </section>
 
     <section id="gallery" class="section">
-        <h2 class="section-title">/// GALLERY</h2>
+        <h2 class="section-title">/// GALLERY
+            <button class="admin-toggle" onclick="showAdminLogin()">🔒</button>
+        </h2>
+
+        <!-- Admin Login Modal -->
+        <div id="adminModal" class="modal-overlay" style="display:none;">
+            <div class="modal-box">
+                <h3>/// ADMIN_ACCESS</h3>
+                <input type="password" id="adminPass" placeholder="비밀번호 입력">
+                <div class="modal-buttons">
+                    <button class="btn-terminal" onclick="adminLogin()">VERIFY</button>
+                    <button class="btn-terminal btn-cancel" onclick="closeModal()">CANCEL</button>
+                </div>
+            </div>
+        </div>
 
         <h3 class="subsection-title">> note 1:</h3>
         <div class="gallery-grid profile-grid">
-            <div class="gallery-frame">
+            <div class="gallery-frame" id="frame-profile">
                 <div class="frame-label">PROFILE_SHEET</div>
-                <div class="gallery-content">PREPARING_DATA...</div>
+                <div class="gallery-content" id="img-profile">PREPARING_DATA...</div>
+                <div class="upload-zone" style="display:none;">
+                    <input type="file" accept="image/*" onchange="uploadImage(this, 'profile')">
+                </div>
             </div>
         </div>
 
         <h3 class="subsection-title">> note 2:</h3>
         <div class="gallery-grid">
-            <div class="gallery-frame">
+            <div class="gallery-frame" id="frame-icon01">
                 <div class="frame-label">_01</div>
-                <div class="gallery-content">NO_SIGNAL</div>
+                <div class="gallery-content" id="img-icon01">NO_SIGNAL</div>
+                <div class="upload-zone" style="display:none;">
+                    <input type="file" accept="image/*" onchange="uploadImage(this, 'icon01')">
+                </div>
             </div>
-            <div class="gallery-frame">
+            <div class="gallery-frame" id="frame-icon02">
                 <div class="frame-label">_02</div>
-                <div class="gallery-content">DATA_CORRUPTED</div>
+                <div class="gallery-content" id="img-icon02">DATA_CORRUPTED</div>
+                <div class="upload-zone" style="display:none;">
+                    <input type="file" accept="image/*" onchange="uploadImage(this, 'icon02')">
+                </div>
             </div>
-            <div class="gallery-frame">
+            <div class="gallery-frame" id="frame-icon03">
                 <div class="frame-label">_03</div>
-                <div class="gallery-content">ENCRYPTED</div>
+                <div class="gallery-content" id="img-icon03">ENCRYPTED</div>
+                <div class="upload-zone" style="display:none;">
+                    <input type="file" accept="image/*" onchange="uploadImage(this, 'icon03')">
+                </div>
             </div>
         </div>
     </section>
@@ -244,7 +270,94 @@
         </footer>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // Supabase init
+        const SUPABASE_URL = 'https://rxembywzofztndyifksb.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4ZW1ieXd6b2Z6dG5keWlma3NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTk3NTQsImV4cCI6MjA4Njc5NTc1NH0.oQvgptv-VHJpF8h45m61RjE7j2ymzAq2xFIPnyRyEjg';
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const BUCKET = 'gallery';
+        let isAdmin = false;
+
+        // Slot config: file name in storage => element ID
+        const SLOTS = {
+            'profile': 'img-profile',
+            'icon01': 'img-icon01',
+            'icon02': 'img-icon02',
+            'icon03': 'img-icon03'
+        };
+
+        // Load images from Supabase on page load
+        async function loadGallery() {
+            const { data, error } = await sb.storage.from(BUCKET).list('', { limit: 100 });
+            if (error || !data) return;
+            data.forEach(file => {
+                const slotName = file.name.split('.')[0];
+                const el = document.getElementById(SLOTS[slotName]);
+                if (el) {
+                    const { data: urlData } = sb.storage.from(BUCKET).getPublicUrl(file.name);
+                    el.innerHTML = '<img src="' + urlData.publicUrl + '?t=' + Date.now() + '" alt="' + slotName + '">';
+                }
+            });
+        }
+        loadGallery();
+
+        // Admin login
+        function showAdminLogin() {
+            document.getElementById('adminModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('adminModal').style.display = 'none';
+            document.getElementById('adminPass').value = '';
+        }
+        function adminLogin() {
+            if (document.getElementById('adminPass').value === 'tensai1222') {
+                isAdmin = true;
+                closeModal();
+                document.querySelectorAll('.upload-zone').forEach(z => z.style.display = 'block');
+                document.querySelector('.admin-toggle').textContent = '🔓';
+            } else {
+                alert('ACCESS DENIED');
+            }
+        }
+
+        // Upload image
+        async function uploadImage(input, slotName) {
+            const file = input.files[0];
+            if (!file) return;
+            const ext = file.name.split('.').pop();
+            const fileName = slotName + '.' + ext;
+
+            // Show uploading state
+            const el = document.getElementById(SLOTS[slotName]);
+            el.innerHTML = 'UPLOADING...';
+
+            // Remove old file first (any extension)
+            const { data: existing } = await sb.storage.from(BUCKET).list('');
+            if (existing) {
+                const old = existing.find(f => f.name.split('.')[0] === slotName);
+                if (old) await sb.storage.from(BUCKET).remove([old.name]);
+            }
+
+            // Upload new file
+            const { error } = await sb.storage.from(BUCKET).upload(fileName, file, {
+                upsert: true,
+                contentType: file.type
+            });
+
+            if (error) {
+                el.innerHTML = 'UPLOAD_FAILED';
+                console.error(error);
+                return;
+            }
+
+            // Show uploaded image
+            const { data: urlData } = sb.storage.from(BUCKET).getPublicUrl(fileName);
+            el.innerHTML = '<img src="' + urlData.publicUrl + '?t=' + Date.now() + '" alt="' + slotName + '">';
+            input.value = '';
+        }
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -262,8 +375,6 @@
         document.addEventListener('click', function () {
             document.querySelector('.lang-switcher').classList.remove('open');
         });
-
-
     </script>
 
 </body>
