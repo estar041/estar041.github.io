@@ -204,11 +204,37 @@
 
     <section id="contact" class="section footer-section">
         <h2 class="section-title">/// CONTACT</h2>
-        <div class="contact-terminal">
-            <p>> Twitter: <a href="https://x.com/Izalpaint" target="_blank">@Izalpaint</a></p>
-            <p>> Youtube: <a href="https://www.youtube.com/@Izaldaub" target="_blank">@Izaldaub</a></p>
-            <p>> Email: <a href="mailto:dreamskkum05@gmail.com">SEND_MAIL</a></p>
+        <div class="contact-links">
+            <a href="https://x.com/Izalpaint" target="_blank" class="contact-link">
+                <i class="fa-brands fa-x-twitter"></i> @Izalpaint
+            </a>
+            <a href="https://www.youtube.com/@Izaldaub" target="_blank" class="contact-link">
+                <i class="fa-brands fa-youtube"></i> @Izaldaub
+            </a>
+            <a href="mailto:dreamskkum05@gmail.com" class="contact-link">
+                <i class="fa-solid fa-envelope"></i> dreamskkum05@gmail.com
+            </a>
         </div>
+
+        <div class="contact-form-box">
+            <h3>/// SEND_MESSAGE</h3>
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="senderName">NAME</label>
+                    <input type="text" id="senderName" placeholder="이름을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">SUBJECT</label>
+                    <input type="text" id="subject" placeholder="제목을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">MESSAGE</label>
+                    <textarea id="message" rows="5" placeholder="메시지를 입력하세요" required></textarea>
+                </div>
+                <button type="submit" class="btn-terminal">>> TRANSMIT</button>
+            </form>
+        </div>
+
         <footer>
             <p>SYSTEM_ID: TENSAI_WEB // DESIGN: estar041</p>
         </footer>
@@ -231,6 +257,16 @@
         });
         document.addEventListener('click', function () {
             document.querySelector('.lang-switcher').classList.remove('open');
+        });
+
+        // Contact form mailto handler
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var name = document.getElementById('senderName').value;
+            var subject = document.getElementById('subject').value;
+            var message = document.getElementById('message').value;
+            var body = 'From: ' + name + '\n\n' + message;
+            window.location.href = 'mailto:dreamskkum05@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
         });
     </script>
 
