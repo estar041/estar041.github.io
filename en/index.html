@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUBJECT: TENSAI // ARCHIVE</title>
     <meta name="description" content="Medical/Clinical Record of UTAU Subject: TENSAI">
-    <link rel="stylesheet" href="../style.css?v=7">
+    <link rel="stylesheet" href="../style.css?v=8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -379,12 +379,40 @@
             if (existing) {
                 const file = existing.find(f => f.name.split('.')[0] === slotName);
                 if (file) {
-                    await sb.storage.from(BUCKET).remove([file.name]);
+                    const { error } = await sb.storage.from(BUCKET).remove([file.name]);
+                    if (error) {
+                        alert('DELETE_FAILED: ' + error.message);
+                        console.error(error);
+                        return;
+                    }
                 }
             }
 
             el.innerHTML = placeholders[slotName];
         }
+
+        // --- Robust Smooth Scroll ---
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        const offset = 80; // Header height
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = targetEl.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
 
         // Language switcher toggle
         document.querySelector('.lang-switcher').addEventListener('click', function (e) {
