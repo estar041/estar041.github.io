@@ -358,6 +358,12 @@ nav {
     transition: border-color 0.3s;
 }
 
+.profile-grid .gallery-frame {
+    grid-column: span 3;
+    aspect-ratio: auto;
+    min-height: 300px;
+}
+
 .gallery-frame:hover {
     border-color: #fff;
 }
