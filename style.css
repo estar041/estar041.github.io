@@ -762,6 +762,22 @@ footer {
     font-family: var(--terminal-font);
     font-size: 0.8rem;
     color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.btn-delete {
+    background: transparent !important;
+    border: 1px solid #ff0000 !important;
+    color: #ff0000 !important;
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.5rem !important;
+    width: auto !important;
+}
+
+.btn-delete:hover {
+    background: #ff0000 !important;
+    color: #fff !important;
 }
 
 .modal-overlay {

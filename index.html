@@ -164,6 +164,7 @@
                 <div class="gallery-content" id="img-profile">PREPARING_DATA...</div>
                 <div class="upload-zone" style="display:none;">
                     <input type="file" accept="image/*" onchange="uploadImage(this, 'profile')">
+                    <button class="btn-terminal btn-delete" onclick="deleteImage('profile')">DELETE</button>
                 </div>
             </div>
         </div>
@@ -175,6 +176,7 @@
                 <div class="gallery-content" id="img-icon01">NO_SIGNAL</div>
                 <div class="upload-zone" style="display:none;">
                     <input type="file" accept="image/*" onchange="uploadImage(this, 'icon01')">
+                    <button class="btn-terminal btn-delete" onclick="deleteImage('icon01')">DELETE</button>
                 </div>
             </div>
             <div class="gallery-frame" id="frame-icon02">
@@ -182,6 +184,7 @@
                 <div class="gallery-content" id="img-icon02">DATA_CORRUPTED</div>
                 <div class="upload-zone" style="display:none;">
                     <input type="file" accept="image/*" onchange="uploadImage(this, 'icon02')">
+                    <button class="btn-terminal btn-delete" onclick="deleteImage('icon02')">DELETE</button>
                 </div>
             </div>
             <div class="gallery-frame" id="frame-icon03">
@@ -189,6 +192,7 @@
                 <div class="gallery-content" id="img-icon03">ENCRYPTED</div>
                 <div class="upload-zone" style="display:none;">
                     <input type="file" accept="image/*" onchange="uploadImage(this, 'icon03')">
+                    <button class="btn-terminal btn-delete" onclick="deleteImage('icon03')">DELETE</button>
                 </div>
             </div>
         </div>
@@ -355,6 +359,29 @@
             const { data: urlData } = sb.storage.from(BUCKET).getPublicUrl(fileName);
             el.innerHTML = '<img src="' + urlData.publicUrl + '?t=' + Date.now() + '" alt="' + slotName + '">';
             input.value = '';
+        }
+
+        async function deleteImage(slotName) {
+            if (!confirm('DELETE THIS DATA?')) return;
+            const el = document.getElementById(SLOTS[slotName]);
+
+            // Revert to placeholder based on slot
+            const placeholders = {
+                'profile': 'PREPARING_DATA...',
+                'icon01': 'NO_SIGNAL',
+                'icon02': 'DATA_CORRUPTED',
+                'icon03': 'ENCRYPTED'
+            };
+
+            const { data: existing } = await sb.storage.from(BUCKET).list('');
+            if (existing) {
+                const file = existing.find(f => f.name.split('.')[0] === slotName);
+                if (file) {
+                    await sb.storage.from(BUCKET).remove([file.name]);
+                }
+            }
+
+            el.innerHTML = placeholders[slotName];
         }
 
         // Smooth scroll
