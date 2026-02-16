@@ -145,6 +145,7 @@ nav {
     margin: 0 auto;
     min-height: auto;
     border: none;
+    scroll-margin-top: 80px;
 }
 
 .section-title {

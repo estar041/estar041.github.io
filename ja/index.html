@@ -383,16 +383,6 @@
             el.innerHTML = placeholders[slotName];
         }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
         // Language switcher toggle
         document.querySelector('.lang-switcher').addEventListener('click', function (e) {
             this.classList.toggle('open');
