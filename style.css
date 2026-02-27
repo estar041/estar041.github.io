@@ -107,7 +107,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
     font-family: var(--terminal-font);
 }
@@ -583,7 +583,7 @@ footer {
 /* Language Switcher */
 .lang-switcher {
     position: fixed;
-    top: 1.2rem;
+    top: 4.5rem; /* 아래로 이동 */
     left: 1.5rem;
     z-index: 10000;
     cursor: pointer;
@@ -944,8 +944,6 @@ footer {
 
     .lang-switcher {
         left: 1rem;
-        top: 4.5rem;
-        /* Move below header on small screens */
     }
 }
 
