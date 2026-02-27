@@ -116,6 +116,7 @@ nav {
     font-weight: 700;
     letter-spacing: -1px;
     color: #fff;
+    font-size: 1.5rem;
 }
 
 .nav-links {
@@ -583,7 +584,8 @@ footer {
 /* Language Switcher */
 .lang-switcher {
     position: fixed;
-    top: 4.5rem; /* 아래로 이동 */
+    top: 4.5rem;
+    /* 아래로 이동 */
     left: 1.5rem;
     z-index: 10000;
     cursor: pointer;
@@ -868,7 +870,7 @@ footer {
     }
 
     .logo {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
 
     .hero-section {
