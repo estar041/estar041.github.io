@@ -314,8 +314,15 @@
             document.getElementById('adminModal').style.display = 'none';
             document.getElementById('adminPass').value = '';
         }
-        function adminLogin() {
-            if (document.getElementById('adminPass').value === 'tensai1222') {
+        async function adminLogin() {
+            const pass = document.getElementById('adminPass').value;
+            const encoder = new TextEncoder();
+            const data = encoder.encode(pass);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            if (hashHex === '4c0bac8c1b407ba3b39711b84fa997fb0cdc85fe1d70a191691eca157896bd99') {
                 isAdmin = true;
                 closeModal();
                 document.querySelectorAll('.upload-zone').forEach(z => z.style.display = 'block');
