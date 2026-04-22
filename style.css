@@ -314,6 +314,10 @@ nav {
 }
 
 /* Video Grid */
+#samples .section-title {
+    margin-bottom: 1rem; /* Reduced spacing */
+}
+
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
