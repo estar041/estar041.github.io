@@ -322,19 +322,14 @@ nav {
 }
 
 .video-card {
-    border: 1px solid #3a4cbd; /* softer blue */
-    background: rgba(0, 0, 0, 0.9);
-    transition: all 0.3s;
-    box-shadow: 0 0 15px rgba(58, 76, 189, 0.15);
-}
-
-.video-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(58, 76, 189, 0.3);
+    background: transparent;
+    border: none;
 }
 
 .video-card .card-header {
-    background: #3a4cbd; /* softer blue header */
+    background: transparent;
+    padding: 0 0 0.5rem 0;
+    color: #fff;
 }
 
 .video-container {
